@@ -50,9 +50,9 @@ public class CollectionTestSuite {
         //When
         ArrayList<Integer> exterminatedList = exterminator.exterminate(fullList);
         //Then
-        for (int number : exterminatedList) {
-            int mod = number % 2;
-            Assert.assertEquals(mod, 0);
-        }
+            for (int number : exterminatedList) {
+                int mod = number % 2;
+                Assert.assertEquals(mod, 0);
+            }
     }
 }
