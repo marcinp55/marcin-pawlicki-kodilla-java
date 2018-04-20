@@ -4,6 +4,7 @@ import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.com.kodilla.stream.lambda.Executor;
 import com.kodilla.stream.com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.com.kodilla.stream.lambda.Processor;
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.reference.FunctionalCalculator;
 
 public class StreamMain {
@@ -34,5 +35,8 @@ public class StreamMain {
         System.out.println(poemBeautifier.beautify("ala ma kota, a kot ma ale", (textToBeautify -> textToBeautify.substring(0, 1).toUpperCase() + textToBeautify.substring(1))));
         System.out.println("\nDot at the end: ");
         System.out.println(poemBeautifier.beautify("Ala ma kota, a kot ma ale", (textToBeautify -> textToBeautify + ".")));
+
+        System.out.println("\nUsing Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
     }
 }
