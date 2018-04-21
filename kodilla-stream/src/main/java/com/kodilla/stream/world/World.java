@@ -10,6 +10,10 @@ public class World {
         this.continents = new ArrayList<>();
     }
 
+    public void addContinent(Continent continent) {
+        continents.add(continent);
+    }
+
     public BigDecimal getPeopleQuantity() {
         BigDecimal numberOfPeople = continents.stream()
                 .flatMap(continent -> continent.getCountries().stream())

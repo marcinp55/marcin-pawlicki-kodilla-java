@@ -48,6 +48,10 @@ public class WorldTestSuite {
         asia.addCountry(russia);
         asia.addCountry(kazakhstan);
 
+        world.addContinent(asia);
+        world.addContinent(europe);
+        world.addContinent(africa);
+
         BigDecimal numberOfPeople = world.getPeopleQuantity();
         BigDecimal expectedNumberOfPeople = new BigDecimal("3434198452");
 
