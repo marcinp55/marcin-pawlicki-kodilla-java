@@ -157,5 +157,7 @@ public class BoardTestSuite {
                 .average().getAsDouble();
 
         System.out.println("Average time of working on tasks in progress: " + avg);
+
+        Assert.assertEquals(10, avg, 0.001);
     }
 }
