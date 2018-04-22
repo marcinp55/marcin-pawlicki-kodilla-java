@@ -1,6 +1,7 @@
 package com.kodilla.rps.figures;
 
-public class Scissors{
+public class Scissors implements Figure {
+    private final String name = "Scissors";
     private final String winsWith = "Paper";
     private final String losesWith = "Rock";
 
@@ -10,5 +11,14 @@ public class Scissors{
 
     public String getLosesWith() {
         return losesWith;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Scissors";
     }
 }

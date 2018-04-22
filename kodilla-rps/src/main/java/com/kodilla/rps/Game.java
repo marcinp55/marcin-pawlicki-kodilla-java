@@ -1,33 +1,23 @@
 package com.kodilla.rps;
 
+import com.kodilla.rps.figures.Figure;
+import com.kodilla.rps.figures.Paper;
+import com.kodilla.rps.figures.Rock;
+import com.kodilla.rps.figures.Scissors;
+
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private String playerName;
-    private int numberOfRoundsToPlay;
-    private int playerOnePoints = 0;
-    private int playerTwoPoints = 0;
+    static String playerName;
+    static int playerOnePoints = 0;
+    static int playerTwoPoints = 0;
+    static int numberOfRoundsToPlay;
     private int currentRoundNumber = 1;
     private ArrayList<Round> rounds = new ArrayList<>();
 
     Scanner gameScanner = new Scanner(System.in);
-
-    public int getPlayerOnePoints() {
-        return playerOnePoints;
-    }
-
-    public int getPlayerTwoPoints() {
-        return playerTwoPoints;
-    }
-
-    public void setPlayerOnePoints(int playerOnePoints) {
-        this.playerOnePoints = playerOnePoints;
-    }
-
-    public void setPlayerTwoPoints(int playerTwoPoints) {
-        this.playerTwoPoints = playerTwoPoints;
-    }
 
     public String getPlayerName() {
         return playerName;
@@ -38,38 +28,67 @@ public class Game {
     }
 
     public void beginGame() {
-        System.out.println("Welcome to Rock-Paper-Scissors");
-
-        System.out.println("What's your name?");
-        playerName = gameScanner.next();
-
-        System.out.println("How many round do you want to play?");
-        numberOfRoundsToPlay = gameScanner.nextInt();
+        playerOnePoints = 0;
+        playerTwoPoints = 0;
+        playerName = UserDialogs.getUserName();
+        numberOfRoundsToPlay = UserDialogs.getNumberOfRounds();
 
         for (int i = 1;i <= numberOfRoundsToPlay;i++) {
             rounds.add(new Round(i));
         }
 
-        System.out.println("------------------------------");
-        System.out.println("Instructions: ");
-        System.out.println("Press 1 to use Rock");
-        System.out.println("Press 2 to use Paper");
-        System.out.println("Press 3 to use Scissors");
-        System.out.println("Press X to end the game");
-        System.out.println("Press N to start a new game");
-        System.out.println("------------------------------");
-        System.out.println("Name: " + playerName);
-        System.out.println("Number of rounds to play: " + numberOfRoundsToPlay);
-        System.out.println("------------------------------");
+        UserDialogs.showInstructions();
+        UserDialogs.showGameInfo();
 
         while (currentRoundNumber <= numberOfRoundsToPlay) {
             rounds.get(currentRoundNumber - 1).startRound();
             currentRoundNumber++;
         }
+
+        UserDialogs.showResults();
     }
 
     public static void endGame() {
         System.out.println("Ending game...");
         System.exit(0);
+    }
+
+    //Returns 1 if player figure wins, 0 if there is a draw and -1 if player figure loses
+    public static int compareFigures(Figure figure1, Figure figure2) {
+        int result = 0;
+
+        if (figure1.getWinsWith().equals(figure2.getName())) {
+            result = 1;
+        }
+        if (figure1.getLosesWith().equals(figure2.getName())) {
+            result = -1;
+        }
+        if (figure1.getName().equals(figure2.getName())) {
+            result = 0;
+        }
+        return result;
+    }
+
+    public static Figure generateOpponentMove() {
+        Random random = new Random();
+        Figure figureToReturn = null;
+        int randomNumber = random.nextInt(3) + 1;
+
+        switch (randomNumber) {
+            case 1: {
+                figureToReturn = new Rock();
+                break;
+            }
+            case 2: {
+                figureToReturn = new Scissors();
+                break;
+            }
+            case 3: {
+                figureToReturn = new Paper();
+                break;
+            }
+        }
+
+        return figureToReturn;
     }
 }
