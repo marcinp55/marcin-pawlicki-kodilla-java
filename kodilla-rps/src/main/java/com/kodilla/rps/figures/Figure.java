@@ -1,7 +1,9 @@
 package com.kodilla.rps.figures;
 
+import java.util.ArrayList;
+
 public interface Figure {
-    String getWinsWith();
-    String getLosesWith();
+    ArrayList<String> getWinsWith();
+    ArrayList<String> getLosesWith();
     String getName();
 }

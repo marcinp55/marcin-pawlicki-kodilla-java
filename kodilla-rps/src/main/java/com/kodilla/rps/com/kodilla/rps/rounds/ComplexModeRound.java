@@ -1,21 +1,17 @@
-package com.kodilla.rps;
+package com.kodilla.rps.com.kodilla.rps.rounds;
 
-import com.kodilla.rps.figures.Figure;
-import com.kodilla.rps.figures.Paper;
-import com.kodilla.rps.figures.Rock;
-import com.kodilla.rps.figures.Scissors;
+import com.kodilla.rps.Game;
+import com.kodilla.rps.figures.*;
 
 import java.util.Scanner;
 
-public class Round {
+public class ComplexModeRound implements Round {
     private int roundNumber;
     private boolean roundEnd = false;
     private Figure playerOneFigure;
     private Figure playerTwoFigure;
 
-    private Scanner roundScanner = new Scanner(System.in);
-
-    public Round(int roundNumber) {
+    public ComplexModeRound(int roundNumber) {
         this.roundNumber = roundNumber;
     }
 
@@ -23,6 +19,9 @@ public class Round {
         return roundNumber;
     }
 
+    private Scanner roundScanner = new Scanner(System.in);
+
+    @Override
     public void startRound() {
         System.out.println("------------------------------");
         System.out.println("Starting round #" + roundNumber);
@@ -62,11 +61,11 @@ public class Round {
                     System.out.println("------------------------------");
                     System.out.println("You chose Rock");
                     playerOneFigure = new Rock();
-                    playerTwoFigure = Game.generateOpponentMove();
+                    playerTwoFigure = Game.generateComplexOpponentMove();
                     System.out.println("Opponent chose " + playerTwoFigure);
                     int compareResult = Game.compareFigures(playerOneFigure, playerTwoFigure);
 
-                    Compare(compareResult);
+                    CheckRoundEnd(compareResult);
 
                     System.out.println("Player one points: " + Game.playerOnePoints);
                     System.out.println("Player two points: " + Game.playerTwoPoints);
@@ -78,11 +77,11 @@ public class Round {
                     System.out.println("------------------------------");
                     System.out.println("You chose Paper");
                     playerOneFigure = new Paper();
-                    playerTwoFigure = Game.generateOpponentMove();
+                    playerTwoFigure = Game.generateComplexOpponentMove();
                     System.out.println("Opponent chose " + playerTwoFigure);
                     int compareResult = Game.compareFigures(playerOneFigure, playerTwoFigure);
 
-                    Compare(compareResult);
+                    CheckRoundEnd(compareResult);
 
                     System.out.println("Player one points: " + Game.playerOnePoints);
                     System.out.println("Player two points: " + Game.playerTwoPoints);
@@ -94,11 +93,43 @@ public class Round {
                     System.out.println("------------------------------");
                     System.out.println("You chose Scissors");
                     playerOneFigure = new Scissors();
-                    playerTwoFigure = Game.generateOpponentMove();
+                    playerTwoFigure = Game.generateComplexOpponentMove();
                     System.out.println("Opponent chose " + playerTwoFigure);
                     int compareResult = Game.compareFigures(playerOneFigure, playerTwoFigure);
 
-                    Compare(compareResult);
+                    CheckRoundEnd(compareResult);
+
+                    System.out.println("Player one points: " + Game.playerOnePoints);
+                    System.out.println("Player two points: " + Game.playerTwoPoints);
+
+                    roundEnd = true;
+                    break;
+                }
+                case "4": {
+                    System.out.println("------------------------------");
+                    System.out.println("You chose Spock");
+                    playerOneFigure = new Spock();
+                    playerTwoFigure = Game.generateComplexOpponentMove();
+                    System.out.println("Opponent chose " + playerTwoFigure);
+                    int compareResult = Game.compareFigures(playerOneFigure, playerTwoFigure);
+
+                    CheckRoundEnd(compareResult);
+
+                    System.out.println("Player one points: " + Game.playerOnePoints);
+                    System.out.println("Player two points: " + Game.playerTwoPoints);
+
+                    roundEnd = true;
+                    break;
+                }
+                case "5": {
+                    System.out.println("------------------------------");
+                    System.out.println("You chose Lizard");
+                    playerOneFigure = new Lizard();
+                    playerTwoFigure = Game.generateComplexOpponentMove();
+                    System.out.println("Opponent chose " + playerTwoFigure);
+                    int compareResult = Game.compareFigures(playerOneFigure, playerTwoFigure);
+
+                    CheckRoundEnd(compareResult);
 
                     System.out.println("Player one points: " + Game.playerOnePoints);
                     System.out.println("Player two points: " + Game.playerTwoPoints);
@@ -110,22 +141,8 @@ public class Round {
         }
     }
 
-    private void Compare(int compareResult) {
-        switch (compareResult) {
-            case 1: {
-                System.out.println("You won this round!");
-                Game.playerOnePoints += 1;
-                break;
-            }
-            case 0: {
-                System.out.println("We have a draw");
-                break;
-            }
-            case -1: {
-                System.out.println("You lose this time");
-                Game.playerTwoPoints += 1;
-                break;
-            }
-        }
+    @Override
+    public void CheckRoundEnd(int compareResult) {
+        Game.afterRound(compareResult);
     }
 }

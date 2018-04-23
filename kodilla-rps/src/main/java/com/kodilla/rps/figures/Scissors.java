@@ -1,15 +1,30 @@
 package com.kodilla.rps.figures;
 
+import java.util.ArrayList;
+
 public class Scissors implements Figure {
     private final String name = "Scissors";
-    private final String winsWith = "Paper";
-    private final String losesWith = "Rock";
+    private final ArrayList<String> winsWith;
+    private final ArrayList<String> losesWith;
 
-    public String getWinsWith() {
+    public Scissors() {
+        winsWith = new ArrayList<>();
+        losesWith = new ArrayList<>();
+
+        winsWith.add("Paper");
+        winsWith.add("Lizard");
+
+        losesWith.add("Rock");
+        losesWith.add("Spock");
+    }
+
+    @Override
+    public ArrayList<String> getWinsWith() {
         return winsWith;
     }
 
-    public String getLosesWith() {
+    @Override
+    public ArrayList<String> getLosesWith() {
         return losesWith;
     }
 

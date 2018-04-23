@@ -2,20 +2,20 @@ package com.kodilla.rps.figures;
 
 import java.util.ArrayList;
 
-public class Paper implements Figure {
-    private final String name = "Paper";
+public class Spock implements Figure {
+    private final String name = "Spock";
     private final ArrayList<String> winsWith;
     private final ArrayList<String> losesWith;
 
-    public Paper() {
+    public Spock() {
         winsWith = new ArrayList<>();
         losesWith = new ArrayList<>();
 
+        winsWith.add("Scissors");
         winsWith.add("Rock");
-        winsWith.add("Spock");
 
-        losesWith.add("Scissors");
         losesWith.add("Lizard");
+        losesWith.add("Paper");
     }
 
     @Override
@@ -34,6 +34,6 @@ public class Paper implements Figure {
 
     @Override
     public String toString() {
-        return "Paper";
+        return "Spock";
     }
 }
