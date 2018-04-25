@@ -14,8 +14,12 @@ public class FlightFinder {
         flights.put("Gdansk", true);
         flights.put("Katowice", false);
 
-        if (flights.containsKey(flight.getArrivalAirport()) && flights.containsValue(true)) {
-            return true;
+        if (flights.containsKey(flight.getArrivalAirport())) {
+            if (flights.get(flight.getArrivalAirport())) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             throw new RouteNotFoundException();
         }
