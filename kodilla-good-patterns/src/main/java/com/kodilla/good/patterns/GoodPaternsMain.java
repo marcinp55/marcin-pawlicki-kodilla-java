@@ -1,9 +1,22 @@
 package com.kodilla.good.patterns;
 
 import com.kodilla.good.patterns.challenges.*;
+import com.kodilla.good.patterns.food.OrderProcessor;
+import com.kodilla.good.patterns.food.Orderr;
+import com.kodilla.good.patterns.food.products.Apple;
+import com.kodilla.good.patterns.food.products.Banana;
+import com.kodilla.good.patterns.food.products.Orange;
+import com.kodilla.good.patterns.food.products.Productt;
+import com.kodilla.good.patterns.food.stores.Auchan;
+import com.kodilla.good.patterns.food.stores.Netto;
+import com.kodilla.good.patterns.food.stores.Store;
+import com.kodilla.good.patterns.food.stores.Tesco;
+import com.kodilla.good.patterns.food.suppliers.ExtraFoodShop;
+import com.kodilla.good.patterns.food.suppliers.GlutenFreeShop;
+import com.kodilla.good.patterns.food.suppliers.HealthyShop;
+import com.kodilla.good.patterns.food.suppliers.Supplier;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class GoodPaternsMain {
@@ -30,5 +43,30 @@ public class GoodPaternsMain {
 
         ProductOrderService productOrderService = new ProductOrderService(order1, paymentService1, sendingService1);
         System.out.println(productOrderService.process());
+
+        //9.3
+        System.out.println("\n///////////////////////////////////////////\n");
+
+        ArrayList<Productt> productts = new ArrayList<>();
+        Productt productt1 = new Apple(10);
+        Productt productt2 = new Banana(15);
+        Productt productt3 = new Orange(5);
+        productts.add(productt1);
+        productts.add(productt2);
+        productts.add(productt3);
+
+        Supplier supplier1 = new ExtraFoodShop();
+        Supplier supplier2 = new GlutenFreeShop();
+        Supplier supplier3 = new HealthyShop();
+
+        Store store1 = new Auchan();
+        Store store2 = new Netto();
+        Store store3 = new Tesco();
+
+        Orderr orderr = new Orderr(productts);
+
+        OrderProcessor orderProcessor = new OrderProcessor();
+
+        System.out.println(orderProcessor.processOrder(orderr, supplier1, store1));
     }
 }

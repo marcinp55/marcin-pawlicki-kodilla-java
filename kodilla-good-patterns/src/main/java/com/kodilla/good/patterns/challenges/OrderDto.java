@@ -39,7 +39,7 @@ public class OrderDto {
 
     @Override
     public String toString() {
-        return "Order details for user: " + marketplaceUser +
+        return "Orderr details for user: " + marketplaceUser +
                 "\n Ordered products: " + products +
                 "\n Amount to pay: " + amountToPay +
                 "\n Payment status: " + isPaymentSuccessful +
