@@ -1,5 +1,8 @@
 package com.kodilla.good.patterns;
 
+import com.kodilla.good.patterns.airports.Airport;
+import com.kodilla.good.patterns.airports.Flight;
+import com.kodilla.good.patterns.airports.FlightsManager;
 import com.kodilla.good.patterns.challenges.*;
 import com.kodilla.good.patterns.food.OrderProcessor;
 import com.kodilla.good.patterns.food.Orderr;
@@ -17,6 +20,7 @@ import com.kodilla.good.patterns.food.suppliers.HealthyShop;
 import com.kodilla.good.patterns.food.suppliers.Supplier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class GoodPaternsMain {
@@ -68,5 +72,53 @@ public class GoodPaternsMain {
         OrderProcessor orderProcessor = new OrderProcessor();
 
         System.out.println(orderProcessor.processOrder(orderr, supplier1, store1));
+
+        //9.4
+        System.out.println("\n///////////////////////////////////////////\n");
+
+        Airport airport1 = new Airport("Poznan");
+        Airport airport2 = new Airport("Wroclaw");
+        Airport airport3 = new Airport("Warszawa");
+        Airport airport4 = new Airport("Katowice");
+
+        Flight flight1 = new Flight("Poznan", "Warszawa");
+        Flight flight2 = new Flight("Wroclaw", "Poznan");
+        Flight flight3 = new Flight("Katowice", "Wroclaw");
+        Flight flight4 = new Flight("Warszawa", "Katowice");
+        Flight flight5 = new Flight("Warszawa", "Poznan", "Katowice");
+        Flight flight6 = new Flight("Wroclaw", "Poznan", "Katowice");
+        Flight flight7 = new Flight("Poznan", "Katowice", "Warszawa");
+        Flight flight8 = new Flight("Katowice", "Wroclaw", "Warszawa");
+
+        ArrayList<Flight> flightsPoznan = new ArrayList<>();
+        ArrayList<Flight> flightsWroclaw = new ArrayList<>();
+        ArrayList<Flight> flightsWarszawa = new ArrayList<>();
+        ArrayList<Flight> flightsKatowice = new ArrayList<>();
+
+        flightsPoznan.add(flight1);
+        flightsPoznan.add(flight7);
+        flightsWroclaw.add(flight2);
+        flightsWroclaw.add(flight6);
+        flightsWarszawa.add(flight4);
+        flightsWarszawa.add(flight5);
+        flightsKatowice.add(flight3);
+        flightsKatowice.add(flight8);
+
+        HashMap<Airport, ArrayList<Flight>> routes = new HashMap<>();
+        routes.put(airport1, flightsPoznan);
+        routes.put(airport2, flightsWroclaw);
+        routes.put(airport3, flightsWarszawa);
+        routes.put(airport4, flightsKatowice);
+
+        FlightsManager flightsManager = new FlightsManager(routes);
+
+        //Searching for flights from city
+        flightsManager.searchRoutesByDepartureAirport(airport1);
+
+        //Searching for flight to city
+        flightsManager.searchRoutesByArrivalAirport(airport2);
+
+        //Searching for flight with change to chosen city
+        flightsManager.searchRoutesWithChange(airport1, airport4);
     }
 }
