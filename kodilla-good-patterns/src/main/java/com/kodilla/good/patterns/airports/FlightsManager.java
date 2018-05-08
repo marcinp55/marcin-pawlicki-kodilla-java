@@ -2,8 +2,6 @@ package com.kodilla.good.patterns.airports;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class FlightsManager {
     private HashMap<Airport, ArrayList<Flight>> routes;
@@ -41,13 +39,12 @@ public class FlightsManager {
     }
 
     public void searchRoutesByArrivalAirport(Airport airport) {
-        Set set = routes.entrySet().stream()
+        System.out.println("\nAvailable flights to: " + airport.getLocation() + "\n");
+
+        routes.entrySet().stream()
                 .flatMap(entry -> entry.getValue().stream())
                 .filter(value -> value.getArrivalAirport().equals(airport.getLocation()))
-                .collect(Collectors.toSet());
-
-        System.out.println("\nAvailable flights to: " + airport.getLocation());
-        System.out.println(set);
+                .forEach(System.out::println);
     }
 
     public void searchRoutesWithChange(Airport changeAirport, Airport destinationAirport) {
