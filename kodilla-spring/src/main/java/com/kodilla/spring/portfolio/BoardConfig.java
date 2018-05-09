@@ -5,27 +5,35 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Configuration
 public class BoardConfig {
     @Qualifier("toDoList")
     @Autowired
-    List<String> tasks;
+    TaskList toDoTasks;
+    @Qualifier("inProgressList")
+    @Autowired
+    TaskList inProgressTasks;
+    @Qualifier("doneList")
+    @Autowired
+    TaskList doneTasks;
+
+    @Bean
+    public Board getBoard() {
+        return new Board(toDoTasks, inProgressTasks, doneTasks);
+    }
 
     @Bean(name = "toDoList")
-    public ArrayList<String> getToDoList() {
-        return new ArrayList<>();
+    public TaskList getToDoList() {
+        return new TaskList();
     }
 
     @Bean(name = "inProgressList")
-    public ArrayList<String> getInProgressList() {
-        return new ArrayList<>();
+    public TaskList getInProgressList() {
+        return new TaskList();
     }
 
     @Bean(name = "doneList")
-    public ArrayList<String> getDoneList() {
-        return new ArrayList<>();
+    public TaskList getDoneList() {
+        return new TaskList();
     }
 }
