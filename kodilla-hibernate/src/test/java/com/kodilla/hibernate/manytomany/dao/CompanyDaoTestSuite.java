@@ -53,7 +53,7 @@ public class CompanyDaoTestSuite {
         int greyMatterId = greyMatter.getId();
 
         List<Employee> foundEmployees = employeeDao.retrieveEmployeeByLastname("Smith");
-        List<Company> foundCompanies = companyDao.retrieveCompaniesWithThreeParamSigns("Sof");
+        List<Company> foundCompanies = companyDao.retrieveCompaniesWithThreeParamSigns("Dat");
 
         //Then
         Assert.assertNotEquals(0, softwareMachineId);
