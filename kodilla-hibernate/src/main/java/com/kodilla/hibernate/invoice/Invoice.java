@@ -10,7 +10,7 @@ import java.util.List;
 public class Invoice {
     private int id;
     private String number;
-    private List<Item> items = new ArrayList<>();
+    private List<Item> items;
 
     public Invoice() {
 
@@ -45,7 +45,6 @@ public class Invoice {
     @OneToMany (
             targetEntity = Item.class,
             mappedBy = "invoice",
-            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     public List<Item> getItems() {
