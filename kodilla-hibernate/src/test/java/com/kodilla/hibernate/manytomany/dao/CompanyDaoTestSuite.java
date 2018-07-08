@@ -3,6 +3,7 @@ package com.kodilla.hibernate.manytomany.dao;
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.CompanyDao;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.EmployeeDao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany() {
@@ -47,18 +52,23 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
 
+        List<Employee> foundEmployees = employeeDao.retrieveEmployeeByLastname("Smith");
+        List<Company> foundCompanies = companyDao.retrieveCompaniesWithThreeParamSigns("Sof");
+
         //Then
         Assert.assertNotEquals(0, softwareMachineId);
         Assert.assertNotEquals(0, dataMaestersId);
         Assert.assertNotEquals(0, greyMatterId);
+        Assert.assertTrue(foundCompanies.size() != 0);
+        Assert.assertTrue(foundEmployees.size() != 0);
 
         //CleanUp
-        //try {
-        //    companyDao.delete(softwareMachineId);
-        //    companyDao.delete(dataMaestersId);
-        //    companyDao.delete(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+        try {
+            companyDao.delete(softwareMachineId);
+            companyDao.delete(dataMaestersId);
+            companyDao.delete(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }
