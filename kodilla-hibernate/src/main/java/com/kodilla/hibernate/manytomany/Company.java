@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 @NamedNativeQuery(
         name = "Company.retrieveCompaniesWithThreeParamSigns",
-        query = "SELECT COMPANY_NAME " +
+        query = "SELECT * " +
                 "FROM COMPANIES " +
                 "WHERE SUBSTR(COMPANY_NAME, 1, 3) = :SIGNS",
         resultClass = Company.class
