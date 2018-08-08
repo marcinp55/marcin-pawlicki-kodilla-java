@@ -7,7 +7,7 @@ import java.util.List;
 
 @NamedQuery(
         name = "Company.retrieveCompaniesByNameFragment",
-        query = "FROM Company WHERE name LIKE %:SIGNS%"
+        query = "FROM Company WHERE name LIKE CONCAT('%', CONCAT(:SIGNS, '%'))"
 )
 
 @NamedNativeQuery(
