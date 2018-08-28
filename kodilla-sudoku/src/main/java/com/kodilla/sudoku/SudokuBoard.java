@@ -17,8 +17,7 @@ public class SudokuBoard {
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         String board = "";
 
         for (int i = 0;i <= 8;i++) {
@@ -26,7 +25,7 @@ public class SudokuBoard {
             board += "| ";
 
             for (int j = 0;j <= 8;j++) {
-                board += rows.get(j).getRow().get(j).getValue() + " | ";
+                board += rows.get(j).getSudokuElements().get(j).getValue() + " | ";
             }
             board += "\n";
         }

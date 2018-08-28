@@ -1,15 +1,25 @@
 package com.kodilla.sudoku;
 
+import java.util.Scanner;
+
 public class SudokuRunner {
     public static void main(String[] args) {
+        SudokuInformationProcessor sudokuInfo = new SudokuInformationProcessor();
         boolean gameFinished = false;
+        SudokuGame theGame = new SudokuGame();
 
-        SudokuBoard board = new SudokuBoard();
-        System.out.println(board);
         //As long as user wants to play, gets new games
         while (!gameFinished) {
-            SudokuGame theGame = new SudokuGame();
-            //gameFinished = theGame.resolveSudoku();
+            sudokuInfo.showChooseNextActionInformation();
+
+            Scanner scanner = new Scanner(System.in);
+            String chosenOption = scanner.nextLine();
+
+            if (chosenOption.equals("SUDOKU")) {
+                gameFinished = theGame.resolveSudoku();
+            } else {
+                theGame.chooseNextAction(chosenOption);
+            }
         }
     }
 }

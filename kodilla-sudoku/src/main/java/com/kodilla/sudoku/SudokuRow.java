@@ -3,16 +3,16 @@ package com.kodilla.sudoku;
 import java.util.ArrayList;
 
 public class SudokuRow {
-    private ArrayList<SudokuElement> row;
+    private ArrayList<SudokuElement> sudokuElements;
 
     public SudokuRow() {
-        this.row = new ArrayList<>();
+        this.sudokuElements = new ArrayList<>();
         for (int i = 1;i <= 9;i++) {
-            this.row.add(new SudokuElement());
+            this.sudokuElements.add(new SudokuElement());
         }
     }
 
-    public ArrayList<SudokuElement> getRow() {
-        return row;
+    public ArrayList<SudokuElement> getSudokuElements() {
+        return sudokuElements;
     }
 }
